@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>       
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ganjil genap</title>       
+</head>
+
+<body>
+    <div style="text-align: center; ">
+    <input  type="number" id="num"></input>
+
+    <button style="height: 30px;" value="hitung" onclick="cekGanjilGenap()">Cek Ganjil/Genap</button>
+    <h2 id="hasil"></h2>
+        </div>
+    <script>
+        function cekGanjilGenap() {
+            let angka = parseInt(document.getElementById('num').value);
+
+            if (angka % 2 === 0) {
+                document.getElementById('hasil').innerText = angka + " adalah angka Genap.";
+            } else {
+                document.getElementById('hasil').innerText = angka + " adalah angka Ganjil.";
+            }
+        }
+    </script>
+</body>
+
+</html>

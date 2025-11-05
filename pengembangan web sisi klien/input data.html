@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">         
+  <title>INPUT DATA MAHASISWA</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      text-align: center;
+    }
+    input, select {
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 5px;
+    }
+    label {
+      margin-top: 10px;
+      display: inline-block;
+    }
+    input:checked + label {
+      background-color: LightSeaGreen;
+      color: white;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #2563eb;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e4ed8;
+    }
+    table {
+      margin: 30px auto;
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 800px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #2563eb;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 >Silahkan Masukkan Data Diri Anda</h1>
+
+  <div>
+    <input style="width: 300px; height: 30px;" type="number" id="nim" placeholder="NIM" min="1" style="width: 300px;"><br>
+
+    <input style="width: 300px; height: 30px;" type="text" id="nama" placeholder="Nama Lengkap" maxlength="30"><br>
+
+    <!-- input gender -->
+<input type="radio" id="male" name="gender" value="male" style="margin-top: 10px;"> 
+<label for="male" style="padding: 5px; border-radius: 20px; cursor: pointer;">Laki-Laki</label>
+<input type="radio" id="female" name="gender" value="female" style="margin-top: 10px;"> 
+<label for="female" style="padding: 5px; border-radius:20px; cursor: pointer;">Perempuan</label><br>
+
+
+    <!-- kota -->
+    <label for="kota">Kota Asal:</label><br>
+    <select style="width: 300px; height: 30px;" id="kota" name="Citylist">
+      <option value="Aceh">Aceh</option>
+      <option value="Bandung">Bandung</option>
+      <option value="Jakarta">Jakarta</option>
+      <option value="Yogyakarta">Yogyakarta</option>
+      <option value="Surabaya">Surabaya</option>
+      <option value="Denpasar">Denpasar</option>      
+      <option value="Medan">Medan</option>
+      <option value="Makassar">Makassar</option>
+    </select><br>
+
+    <!-- hobi -->
+    <label for="hobi">Hobi:</label><br>
+    <select style="width: 300px; height: 30px;" id="hobi" name="Hobilist">
+      <option value="Olahraga">Olahraga</option>
+      <option value="Bekerja">Bekerja</option>
+      <option value="Berlibur">Berlibur</option>
+      <option value="Mendaki">Mendaki</option>
+      <option value="Touring">Touring</option>
+      <option value="Membaca">Membaca</option>      
+      <option value="Menulis">Menulis</option>
+      <option value="Merakit">Merakit</option>
+    </select><br>
+
+    <!-- tanggal lahir -->
+    <label for="birthday">Tanggal Lahir:</label><br>
+    <input style="width: 300px; height: 30px;" type="date" id="birthday" name="birthday"><br>
+
+    <!-- alamat -->
+    <input style="width: 300px; height: 30px;" type="text" id="alamat" placeholder="Alamat Lengkap" maxlength="50"><br>
+
+    <!-- no hp -->
+    <input style="width: 300px; height: 30px;" type="tel" id="hp" placeholder="No. Handphone" maxlength="13"><br>
+
+    <!-- email -->
+    <input style="width: 300px; height: 30px;" type="email" id="email" placeholder="Email" maxlength="30"><br>
+
+    
+
+    <!-- Tombol Submit -->
+    <button onclick="tambahData()">Submit</button>
+  </div>
+
+  <!-- Tabel hasil -->
+  <table id="hasilTable" style="display:none;">
+    <thead>
+      <tr>
+        <th>NIM</th>
+        <th>Nama</th>
+        <th>Gender</th>
+        <th>Kota</th>
+        <th>Tanggal Lahir</th>
+        <th>Alamat</th>
+        <th>No. HP</th>
+        <th>Email</th>
+        <th>Hobi</th>
+      </tr>
+    </thead>
+    <tbody id="hasilBody"></tbody>
+  </table>
+
+  <script>
+    function tambahData() {
+      const nim = document.getElementById("nim").value;
+      const nama = document.getElementById("nama").value;
+      const gender = document.querySelector('input[name="gender"]:checked')?.value || "";
+      const kota = document.getElementById("kota").value;
+      const tgl = document.getElementById("birthday").value;
+      const alamat = document.getElementById("alamat").value;
+      const hp = document.getElementById("hp").value;
+      const email = document.getElementById("email").value;
+      const hobi = document.getElementById("hobi").value;
+
+      if (!nim || !nama || !gender || !tgl || !alamat || !hp || !email) {
+        alert("Harap isi semua data terlebih dahulu!");
+        return;
+      }
+
+      const table = document.getElementById("hasilTable");
+      const tbody = document.getElementById("hasilBody");
+      table.style.display = "table";
+
+      const row = tbody.insertRow();
+      row.insertCell(0).textContent = nim;
+      row.insertCell(1).textContent = nama;
+      row.insertCell(2).textContent = gender;
+      row.insertCell(3).textContent = kota;
+      row.insertCell(4).textContent = tgl;
+      row.insertCell(5).textContent = alamat;
+      row.insertCell(6).textContent = hp;
+      row.insertCell(7).textContent = email;
+      row.insertCell(8).textContent = hobi;
+
+      // Bersihkan form setelah submit
+      document.querySelectorAll("input").forEach(el => {
+        if (el.type !== "radio") el.value = "";
+      });
+      document.querySelectorAll('input[name="gender"]').forEach(el => el.checked = false);
+      document.getElementById("kota").selectedIndex = 0;
+      document.getElementById("hobi").selectedIndex = 0;
+    }
+  </script>
+</body>
+</html>
